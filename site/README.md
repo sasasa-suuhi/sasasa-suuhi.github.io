@@ -8,7 +8,7 @@ HTML・CSS・JavaScriptだけで動く、GitHub Pages向けの静的サイトで
 
 ## GitHubで更新する
 
-公開URL：https://basasi19.github.io/sasasa-suuhi-site/
+公開URL：https://sasasa-suuhi.github.io/
 
 リポジトリ内では、このフォルダーを`site/`として保ちます。`main`ブランチのサイト本体を更新すると、`.github/workflows/pages.yml`が`site/`だけをGitHub Pagesへ公開します。`outputs`や`work`は含めません。
 
@@ -67,7 +67,7 @@ Klee OneはGoogle Fonts公式配布から取得したSIL Open Font Licenseのフ
 
 ## 公開について
 
-[GitHubリポジトリ](https://github.com/basasi19/sasasa-suuhi-site)にサイト一式を保管し、[GitHub Pages](https://basasi19.github.io/sasasa-suuhi-site/)で公開します。この公開URLをInstagramや名刺用QRコードに利用できます。
+[GitHubリポジトリ](https://github.com/sasasa-suuhi/sasasa-suuhi.github.io)にサイト一式を保管し、[GitHub Pages](https://sasasa-suuhi.github.io/)で公開します。この公開URLをInstagramや名刺用QRコードに利用できます。
 
 ## 改訂前のサイトに戻す
 
