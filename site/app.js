@@ -12,9 +12,11 @@
   const garden = document.querySelector('.number-garden');
   const gardenNumber = document.getElementById('visual-number');
   const gardenCaption = document.getElementById('visual-caption');
-  const copyStatus = document.getElementById('copy-status');
+  const readingPanel = document.querySelector('.reading-panel');
   function showGarden(number = null) {
     garden.classList.toggle('has-result', number !== null);
+    if (number === null) delete readingPanel.dataset.baseNumber;
+    else readingPanel.dataset.baseNumber = String(number);
     gardenNumber.textContent = number === null ? '?' : String(number);
     gardenCaption.textContent = number === null ? 'あなたの数字に、出会う。' : '自分を知る、小さな手がかり。';
     garden.querySelectorAll('[data-number]').forEach(digit => digit.classList.toggle('is-active', Number(digit.dataset.number) === number));
@@ -34,7 +36,6 @@
     error.hidden = true;
     fields.forEach(field => field.removeAttribute('aria-invalid'));
     showGarden();
-    copyStatus.textContent = '';
   }
   year.addEventListener('input', () => { clearResult(); refreshDays(); });
   month.addEventListener('change', () => { clearResult(); refreshDays(); });
@@ -60,11 +61,13 @@
     const number = calculator.birthNumber(y, m, d);
     const meaning = calculator.meanings[number];
     showGarden(number);
-    copyStatus.textContent = '';
     document.getElementById('result-number').textContent = String(number);
     document.getElementById('result-announcement').textContent = String(number);
     document.getElementById('result-keywords').textContent = meaning.keywords;
+    document.getElementById('result-title').textContent = meaning.title.replace('、', '、\n');
     document.getElementById('result-description').textContent = meaning.description;
+    document.getElementById('result-tendency').textContent = meaning.tendency;
+    document.getElementById('result-hint').textContent = meaning.hint;
     document.getElementById('result-question').textContent = meaning.question;
     result.classList.remove('is-new');
     result.hidden = false;
@@ -76,16 +79,6 @@
   });
   form.querySelector('fieldset').disabled = false;
   form.querySelector('[type="submit"]').disabled = false;
-
-  document.getElementById('copy-question').addEventListener('click', async () => {
-    try {
-      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
-      await navigator.clipboard.writeText(document.getElementById('result-question').textContent);
-      copyStatus.textContent = '問いをコピーしました。';
-    } catch {
-      copyStatus.textContent = '問いの文章を選択してコピーしてください。';
-    }
-  });
 
   const menuButton = document.querySelector('.menu-toggle');
   const menu = document.getElementById('mobile-menu');
@@ -144,6 +137,20 @@
   });
   // Content remains visible if scripts are unavailable or motion is reduced.
   if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    // Stagger short groups, so words and photographs arrive with a little space.
+    document.querySelectorAll('.intro-section, .reading-heading, .reading-experience, .approach-heading, .about-copy, .session-heading, .session-panel, .booking-inner').forEach(group => {
+      group.classList.remove('reveal');
+      Array.from(group.children).filter(child => !child.matches('svg, .instagram-link')).forEach((child, index) => {
+        child.classList.add('reveal');
+        child.style.setProperty('--reveal-delay', `${Math.min(index * 55, 165)}ms`);
+      });
+    });
+    document.querySelectorAll('.portrait-wrap').forEach(group => {
+      group.classList.remove('reveal');
+      group.querySelector('.portrait').classList.add('reveal');
+      group.querySelector('.portrait-caption').classList.add('reveal');
+      group.querySelector('.portrait-caption').style.setProperty('--reveal-delay', '90ms');
+    });
     const sections = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -151,7 +158,7 @@
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       }
-    }), { threshold: 0, rootMargin: '0px 0px -32px 0px' });
+    }), { threshold: 0, rootMargin: '0px 0px -24px 0px' });
     sections.forEach(section => {
       if (section.getBoundingClientRect().top > window.innerHeight) section.classList.add('is-waiting');
       observer.observe(section);
