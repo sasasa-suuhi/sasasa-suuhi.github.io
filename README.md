@@ -2,7 +2,7 @@
 
 数秘術と対話を通して、自分の本音や持ち味を知るための案内サイトです。
 
-**[公開サイトを開く](https://basasi19.github.io/sasasa-suuhi-site/)**
+**[公開サイトを開く](https://sasasa-suuhi.github.io/)**
 
 ## サイト本体
 
@@ -22,6 +22,10 @@
 ## 公開と更新
 
 GitHub Pagesで`site/`の内容を配信します。`main`ブランチのサイト本体を更新すると、[公開ワークフロー](.github/workflows/pages.yml)が自動実行され、同じURLに反映されます。公開状況はGitHubの`Actions`から確認できます。
+
+公開用リポジトリは[`sasasa-suuhi/sasasa-suuhi.github.io`](https://github.com/sasasa-suuhi/sasasa-suuhi.github.io)です。`sasasa-suuhi` Organizationのメインサイトとして公開します。独自ドメインやレンタルサーバーの契約は不要です。
+
+移行前のリポジトリ[`basasi19/sasasa-suuhi-site`](https://github.com/basasi19/sasasa-suuhi-site)は、過去の変更履歴と公開版の保存先として残しています。
 
 ## 素材
 
