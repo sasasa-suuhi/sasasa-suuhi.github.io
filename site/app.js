@@ -109,13 +109,19 @@
   const hero = document.getElementById('top');
   const story = document.querySelector('[data-reading-story]');
   const example = story.querySelector('.story-example');
-  const answer = story.querySelector('.story-answer');
+  const stage = story.querySelector('.story-stage');
   const questions = document.getElementById('questions');
   const mobileDock = document.querySelector('.mobile-dock');
   const scrollArt = document.querySelector('[data-scroll-art]');
+  const scrollPanels = Array.from(document.querySelectorAll('[data-scroll-panel]'));
   let currentLink = null;
   let scrollFrame = null;
   const clampProgress = value => Math.max(0, Math.min(1, value));
+
+  function setProgress(element, property, value) {
+    const next = clampProgress(value).toFixed(4);
+    if (element.style.getPropertyValue(property) !== next) element.style.setProperty(property, next);
+  }
 
   function updateScrollState() {
     scrollFrame = null;
@@ -136,15 +142,16 @@
     const heroRect = hero?.getBoundingClientRect();
     const animate = !reducedMotion.matches;
     const storyRect = animate ? story.getBoundingClientRect() : null;
-    const exampleTop = animate ? example.getBoundingClientRect().top : 0;
-    const answerTop = animate ? answer.getBoundingClientRect().top : 0;
+    const exampleRect = example.getBoundingClientRect();
+    const stageHeight = animate ? stage.getBoundingClientRect().height : 0;
+    const panelRects = animate ? scrollPanels.map(panel => panel.getBoundingClientRect()) : [];
 
     const questionsTop = animate ? questions?.getBoundingClientRect().top : undefined;
     const artRect = animate ? scrollArt?.getBoundingClientRect() : undefined;
 
     progress.style.transform = `scaleX(${fraction})`;
     header.classList.toggle('is-scrolled', scrollY > 24);
-    mobileDock?.classList.toggle('is-ready', Boolean(heroRect && heroRect.bottom < innerHeight * .55));
+    mobileDock?.classList.toggle('is-ready', exampleRect.bottom < innerHeight * .67);
     if (nextLink !== currentLink) {
       currentLink?.removeAttribute('aria-current');
       nextLink?.setAttribute('aria-current', 'location');
@@ -152,30 +159,37 @@
     }
     if (storyRect) {
       const viewport = Math.max(1, innerHeight - headerBottom);
-      const heroTravel = (headerBottom - heroRect.top) / heroRect.height;
-      const washTravel = (headerBottom - storyRect.top) / Math.max(1, storyRect.height - viewport);
-      const exampleTravel = (innerHeight - exampleTop) / viewport;
-      const answerTravel = (innerHeight - answerTop) / viewport;
-      const storyProgress = {
-        '--hero-progress': heroTravel,
-        '--wash-progress': washTravel,
-        '--photo-progress': exampleTravel / .62,
-        '--quote-progress': (exampleTravel - .15) / .56,
-        '--answer-progress': (answerTravel - .12) / .67
-      };
-      for (const [name, value] of Object.entries(storyProgress)) {
-        story.style.setProperty(name, clampProgress(value).toFixed(4));
-      }
+      const pinDistance = Math.max(1, exampleRect.height - stageHeight);
+      const entry = clampProgress((innerHeight - exampleRect.top) / viewport);
+      const scene = clampProgress((headerBottom - exampleRect.top) / pinDistance);
+      const photo = (entry - .04) / .96 + scene * .22;
+      const quote = (entry - .38) / .62 + scene * .35;
+      const answer = (scene - .34) / .47;
+
+      setProgress(story, '--hero-progress', (headerBottom - heroRect.top) / heroRect.height);
+      setProgress(story, '--wash-progress', (headerBottom - storyRect.top) / Math.max(1, storyRect.height - viewport));
+      setProgress(story, '--scene-entry', entry);
+      setProgress(story, '--scene-progress', scene);
+      setProgress(story, '--photo-progress', photo);
+      setProgress(story, '--quote-progress', quote);
+      setProgress(story, '--answer-progress', answer);
+
+      const activeScene = entry < .69 ? '1' : answer < .51 ? '2' : '3';
+      if (story.dataset.scene !== activeScene) story.dataset.scene = activeScene;
     }
     if (questionsTop !== undefined) {
       const chapterTravel = Math.max(1, (innerHeight - headerBottom) * .75);
       const chapterProgress = (innerHeight - questionsTop) / chapterTravel;
-      questions.style.setProperty('--chapter-progress', clampProgress(chapterProgress).toFixed(4));
+      setProgress(questions, '--chapter-progress', chapterProgress);
     }
     if (artRect) {
       const artProgress = (innerHeight - artRect.top) / (innerHeight + artRect.height);
-      scrollArt.style.setProperty('--art-progress', clampProgress(artProgress).toFixed(4));
+      setProgress(scrollArt, '--art-progress', artProgress);
     }
+    panelRects.forEach((rect, index) => {
+      const panelProgress = (innerHeight - rect.top) / (innerHeight + rect.height);
+      setProgress(scrollPanels[index], '--panel-progress', panelProgress);
+    });
   }
 
   function scheduleScrollState() {
@@ -183,10 +197,13 @@
   }
   window.addEventListener('scroll', scheduleScrollState, { passive: true });
   window.addEventListener('resize', scheduleScrollState, { passive: true });
+  story.classList.toggle('motion-ready', !reducedMotion.matches);
   reducedMotion.addEventListener('change', event => {
+    story.classList.toggle('motion-ready', !event.matches);
     if (event.matches) {
       questions?.style.removeProperty('--chapter-progress');
       scrollArt?.style.removeProperty('--art-progress');
+      scrollPanels.forEach(panel => panel.style.removeProperty('--panel-progress'));
     }
     scheduleScrollState();
   });
