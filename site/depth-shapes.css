@@ -1,0 +1,49 @@
+.drift-depth {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  contain: strict;
+  pointer-events: none;
+  user-select: none;
+}
+
+.drift-depth--back { z-index: -1; }
+.drift-depth--front { z-index: 4; }
+
+.drift-piece {
+  position: absolute;
+  inset: 0 auto auto 0;
+  aspect-ratio: 5 / 3;
+  transform-origin: center;
+}
+
+.drift-piece canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.drift-depth--front canvas { filter: blur(1.8px); }
+.drift-depth--back canvas { filter: blur(.3px); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .drift-piece:not([hidden]) canvas {
+    animation: shard-buoyancy var(--drift-period) ease-in-out var(--drift-delay) infinite alternate;
+  }
+  @keyframes shard-buoyancy {
+    from { transform: translate(-1%, -.8%) rotate(-2.5deg); }
+    to { transform: translate(1.3%, 1.1%) rotate(2.5deg); }
+  }
+}
+
+.motion-paused .drift-piece canvas,
+.drift-depth.is-asleep .drift-piece canvas { animation-play-state: paused; }
+
+@media (max-width: 680px) {
+  .drift-depth--front {
+    mask-image: linear-gradient(to right, #000 3%, #000c 9%, transparent 18%, transparent 82%, #000c 91%, #000 97%);
+  }
+  .drift-depth--front canvas { filter: blur(1px); }
+}
+
+@media print { .drift-depth { display: none; } }

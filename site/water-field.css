@@ -1,0 +1,26 @@
+/* The initial paper wash remains available while the animated pigments load. */
+.water-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 3% 37%, #efd1bf 0, transparent 46%),
+    radial-gradient(ellipse at 92% 78%, #bcded7 0, transparent 44%),
+    radial-gradient(ellipse at 25% 101%, #e8d8ec 0, transparent 38%),
+    #fbf8f1;
+}
+
+#water-field {
+  display: block;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+#water-field.is-painted { visibility: visible; }
+
+@media print {
+  .water-scene { display: none; }
+}

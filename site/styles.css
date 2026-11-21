@@ -127,6 +127,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   box-shadow: 0 5px 22px #48333c13; border: 1px solid #d9cbd06b;
 }
 .mobile-dock a:hover { box-shadow: 0 7px 26px #48333c28; }
+.motion-toggle {
+  position: fixed; z-index: 30; left: clamp(14px, 2.2vw, 36px);
+  bottom: max(16px, env(safe-area-inset-bottom)); width: 44px; height: 44px;
+  display: grid; place-items: center; border: 1px solid #d9cbd078;
+  border-radius: 50%; background: #fffaf5e8; color: var(--ink);
+}
+.motion-toggle span { width: 10px; height: 12px; border-inline: 2px solid currentColor; }
+.motion-paused .motion-toggle span {
+  height: 0; width: 0; margin-left: 3px; border: 6px solid transparent;
+  border-left: 9px solid currentColor; border-right: 0;
+}
 
 /* A single open sheet, with the original card lettering set around the copy. */
 .hero {
@@ -139,7 +150,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   font-size: clamp(51px, 5.65vw, 90px); line-height: 1.55; letter-spacing: .075em;
   font-weight: 500; color: #3e2927;
 }
-.hero-copy h1 span { display: inline-block; }
+.hero-copy h1 span, #approach-title span { display: inline-block; }
 .hero-description { margin: 18px auto 0; font-size: clamp(16px, 1.65vw, 25px); letter-spacing: .105em; }
 .brush-link {
   position: relative; margin-top: clamp(36px, 4.7vw, 68px);
@@ -163,7 +174,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   width: 44px; height: 55px; display: grid; place-items: center;
 }
 .scroll-cue span { height: 34px; width: 1px; background: linear-gradient(transparent,#89686c); }
-.approach { padding-bottom: clamp(48px,6vw,100px); }
+.approach {
+  isolation: isolate;
+  max-width: 900px;
+  padding: clamp(105px, 10vw, 158px) clamp(28px, 5vw, 76px);
+}
+.approach::before {
+  content: ''; position: absolute; z-index: -1; inset: clamp(32px, 3.6vw, 55px) 0;
+  background: #fffcf8f5; border-radius: clamp(18px, 2.1vw, 32px);
+  box-shadow: 0 12px 65px -40px #72577445;
+}
 .approach .section-heading { max-width: 825px; margin: auto; }
 .fold { max-width: 720px; margin: 34px auto 0; }
 .fold summary {
@@ -181,11 +201,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .principles h3 { font-size: 19px; }
 .principles p { font-size: 15px; margin-top: 5px; color: var(--muted); }
 
-/* The reading's tint diffuses to transparent at both ends of this chapter. */
-.reading-section {
-  background: radial-gradient(ellipse at 18% 50%,#eadbe278,transparent 59%),
-              radial-gradient(ellipse at 86% 50%,#d6e8e981,transparent 63%);
-}
 .reading-panel { --number-tone: #915a71; --number-tint: #f5eaf0; --number-line: #e3ced9; }
 .reading-panel[data-base-number="1"] { --number-tone:#95505a; --number-tint:#f4eae6; --number-line:#e7cfc9; }
 .reading-panel[data-base-number="2"] { --number-tone:#4d7189; --number-tint:#eaf0f0; --number-line:#ccdce1; }
@@ -266,8 +281,6 @@ legend { padding: 0; color: var(--muted); font-size: 14px; }
 .portrait img { width: 100%; aspect-ratio: 1; height: auto; }
 .session {
   padding-top: clamp(70px,8vw,135px);
-  background: radial-gradient(ellipse at 35% 46%,#fae8daa6,transparent 64%),
-              radial-gradient(ellipse at 80% 75%,#e6e1f362,transparent 60%);
 }
 .session .section-heading h2 { font-size: clamp(28px,3vw,43px); }
 .booking { max-width: 630px; margin: 27px auto 0; text-align: center; }
@@ -322,6 +335,8 @@ dialog::backdrop { background: #41353d69; backdrop-filter: blur(3px); }
   body { font-size: 16px; }
   .container { width: calc(100% - 46px); }
   .chapter { padding-block: 76px; }
+  .approach { padding: 82px 20px; }
+  .approach::before { inset-block: 27px; }
   .header-inner { padding: 7px 16px; }
   .brand { gap: 10px; }
   .signature { width: 83px; }
@@ -374,7 +389,7 @@ dialog::backdrop { background: #41353d69; backdrop-filter: blur(3px); }
   *,*::before,*::after { animation: none !important; transition: none !important; }
 }
 @media print {
-  .site-header,.mobile-dock,.hero-numbers,.scroll-cue,.water-scene,.page-progress { display: none; }
+  .site-header,.mobile-dock,.motion-toggle,.hero-numbers,.scroll-cue,.water-scene,.page-progress { display: none; }
   .hero { min-height: auto; padding: 30px 0; }
   .chapter { padding-block: 22px; }
   body { background: white; }

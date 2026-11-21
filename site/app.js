@@ -99,36 +99,31 @@
   document.addEventListener('click', event => { if (!menu.hidden && !event.target.closest('.site-header')) closeMenu(); });
   window.matchMedia('(min-width: 881px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
 
-  // Each plane moves against a different part of the scroll. Only the three
-  // decorative layers and the opening digits are transformed.
   const header = document.querySelector('.site-header');
   const progress = document.querySelector('.page-progress span');
   const dock = document.querySelector('.mobile-dock');
   const hero = document.getElementById('top');
-  const planes = ['far', 'middle', 'near'].map(depth => document.querySelector('.water-' + depth));
+  const motionButton = document.querySelector('.motion-toggle');
+  const root = document.documentElement;
+  function syncMotionControl() {
+    const paused = root.classList.contains('motion-paused');
+    motionButton.hidden = reducedMotion.matches;
+    motionButton.title = paused ? '背景の動きを再開する' : '背景の動きを止める';
+    motionButton.setAttribute('aria-label', motionButton.title);
+  }
+  syncMotionControl();
+  motionButton.addEventListener('click', () => {
+    root.classList.toggle('motion-paused');
+    syncMotionControl();
+    document.dispatchEvent(new Event('scene-motion-change'));
+    scheduleScrollState();
+  });
   const navSections = Array.from(document.querySelectorAll('.desktop-nav a[href^="#"]'), link => ({
     link,
     section: document.getElementById(link.hash.slice(1))
   })).filter(item => item.section);
   let currentLink = null;
   let scrollFrame = null;
-
-  function moveWater(scrollY, viewportHeight) {
-    if (reducedMotion.matches || !planes.every(Boolean)) return;
-    // Smooth, bounded arcs give every chapter depth without letting any layer
-    // drift off screen on long pages or after opening a reading result.
-    const phase = scrollY / Math.max(viewportHeight, 420);
-    const amplitude = Math.min(window.innerWidth / 1100, 1);
-    const slow = Math.sin(phase * .48);
-    const drift = Math.sin(phase * .94);
-    const sweep = Math.sin(phase * 1.31);
-    planes[0].style.transform = `translate3d(${5 * slow * amplitude}px,${12 * slow}px,0)`;
-    planes[1].style.transform = `translate3d(${-14 * drift * amplitude}px,${-45 * drift * amplitude}px,0) rotate(${-2 * drift}deg)`;
-    planes[2].style.transform = `translate3d(${22 * sweep * amplitude}px,${87 * sweep * amplitude}px,0) rotate(${3 * sweep}deg)`;
-    if (hero && scrollY <= viewportHeight * 1.6) {
-      hero.style.setProperty('--digit-travel', Math.min(scrollY, viewportHeight) * .12 + 'px');
-    }
-  }
 
   function updateScrollState() {
     scrollFrame = null;
@@ -153,7 +148,9 @@
       nextLink?.setAttribute('aria-current', 'location');
       currentLink = nextLink;
     }
-    moveWater(scrollY, viewport);
+    if (scrollY <= viewport * 1.6 && !reducedMotion.matches && !root.classList.contains('motion-paused')) {
+      hero.style.setProperty('--digit-travel', Math.min(scrollY, viewport) * .12 + 'px');
+    }
   }
 
   function scheduleScrollState() {
@@ -164,10 +161,8 @@
   window.addEventListener('pageshow', scheduleScrollState);
   document.addEventListener('toggle', scheduleScrollState, true);
   reducedMotion.addEventListener('change', event => {
-    if (event.matches) {
-      planes.forEach(layer => layer?.style.removeProperty('transform'));
-      hero?.style.removeProperty('--digit-travel');
-    }
+    if (event.matches) hero.style.removeProperty('--digit-travel');
+    syncMotionControl();
     scheduleScrollState();
   });
   scheduleScrollState();

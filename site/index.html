@@ -11,21 +11,22 @@
   <meta property="og:locale" content="ja_JP">
   <link rel="canonical" href="https://sasasa-suuhi.github.io/">
   <meta property="og:url" content="https://sasasa-suuhi.github.io/">
-  <meta property="og:image" content="https://sasasa-suuhi.github.io/assets/ripple-cover.jpg">
+  <meta property="og:image" content="https://sasasa-suuhi.github.io/assets/water-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <title>数秘術鑑定 さささ｜心の声に、色がつく。</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="./assets/ripple-paper.webp" as="image">
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="./ripple-motion.css">
+  <link rel="stylesheet" href="./styles.css?v=water">
+  <link rel="stylesheet" href="./ripple-motion.css?v=water">
+  <link rel="stylesheet" href="./water-field.css">
+  <link rel="stylesheet" href="./depth-shapes.css">
   <script src="./numerology.js" defer></script>
-  <script src="./app.js" defer></script>
+  <script src="./app.js?v=water" defer></script>
+  <script src="./water-field.js" defer></script>
+  <script src="./depth-shapes.js" defer></script>
 </head>
 <body>
   <div class="water-scene" aria-hidden="true">
-    <div class="water-far"></div>
-    <div class="water-middle"></div>
-    <div class="water-near"></div>
+    <canvas id="water-field"></canvas>
   </div>
   <div class="page-progress" aria-hidden="true"><span></span></div>
   <a class="skip-link" href="#main">本文へ進む</a>
@@ -66,7 +67,7 @@
     <section class="approach chapter container" id="approach" aria-labelledby="approach-title">
       <div class="section-heading" data-stagger>
         <p class="section-label" data-reveal>私の想い</p>
-        <h2 id="approach-title" data-reveal="line">うまく言葉にならない日にも。</h2>
+        <h2 id="approach-title" data-reveal="line"><span>うまく言葉に</span><span>ならない日にも。</span></h2>
         <p class="section-intro" data-reveal>「なんとなく気になる」。その小さな感覚から、お話を始めましょう。<br>数字を手がかりに、一緒にあなたの言葉を探します。</p>
       </div>
       <details class="fold" data-reveal>
@@ -165,6 +166,7 @@
     <div><button type="button" data-dialog="privacy-dialog">プライバシー</button><button type="button" data-dialog="terms-dialog">ご利用案内</button><a href="https://www.instagram.com/sasasa_suuhi/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
   </footer>
   <nav class="mobile-dock" aria-label="お申し込みへのショートカット"><a href="#booking">お申し込み <span aria-hidden="true">↗</span></a></nav>
+  <button class="motion-toggle" type="button" hidden aria-label="背景の動きを止める" title="背景の動きを止める"><span aria-hidden="true"></span></button>
   <dialog id="privacy-dialog" aria-labelledby="privacy-title">
     <div class="dialog-content">
       <div class="dialog-heading"><h2 id="privacy-title">プライバシー</h2><button type="button" data-close aria-label="閉じる">×</button></div>
