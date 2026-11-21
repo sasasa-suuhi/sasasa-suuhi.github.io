@@ -1,25 +1,28 @@
-/* The initial paper wash remains available while the animated pigments load. */
+/* Native document-length artwork is visible while the canvas loads, and is
+   also the full-page fallback when scripting or canvas is unavailable. */
+body { position: relative; }
 .water-scene {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -2;
   overflow: hidden;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse at 3% 37%, #efd1bf 0, transparent 46%),
-    radial-gradient(ellipse at 92% 78%, #bcded7 0, transparent 44%),
-    radial-gradient(ellipse at 25% 101%, #e8d8ec 0, transparent 38%),
-    #fbf8f1;
+  background: #fffdfb url('./assets/water-scroll.webp') center top / cover no-repeat;
 }
 
 #water-field {
-  display: block;
+  position: fixed;
+  inset: 0;
   width: 100%;
   height: 100%;
+  display: block;
   visibility: hidden;
 }
-
 #water-field.is-painted { visibility: visible; }
+
+@media (max-aspect-ratio: 4/5) {
+  .water-scene { background-image: url('./assets/water-scroll-mobile.webp'); }
+}
 
 @media print {
   .water-scene { display: none; }

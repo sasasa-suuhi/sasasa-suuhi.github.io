@@ -22,7 +22,7 @@ GitHubの設定は`Settings` → `Pages` → `Source: GitHub Actions`です。�
 - 色、余白、丸み、文字サイズ：`styles.css`
 - 数字ごとの説明文：`numerology.js` の `meanings`
 - トップの水彩数字は `assets/digit-*.webp`。各数字のサイズと位置は `styles.css` で調整します。
-- 章ごとの水彩の色と流れは `water-field.js`、描画前の背景は `water-field.css` で調整します。手前と奥を流れる形は `depth-shapes.js` と `depth-shapes.css`、見出しや写真の登場は `ripple-motion.css` にあります。
+- 縦につながる水彩画は `assets/water-scroll.webp`、スマホ縦画面用は `assets/water-scroll-mobile.webp` です。水の揺らぎは `water-field.js`、静止画の表示は `water-field.css` で調整します。手前と奥を流れる形は `depth-shapes.js` と `depth-shapes.css`、見出しや写真の登場は `ripple-motion.css` にあります。
 - 自己紹介の丸写真は `assets/profile-approved.png`、名刺の署名は `assets/sasasa-signature.webp` です。
 
 自己紹介写真のファイル名を変える場合は、`index.html`の参照も変更してください。ページの背景色とグラデーションは`styles.css`で調整できます。
@@ -52,7 +52,7 @@ GitHubの設定は`Settings` → `Pages` → `Source: GitHub Actions`です。�
 
 ## 表示と文字
 
-スクロールを止めても、水彩の色がゆっくりにじみます。章を読み進めるにつれて背景の色と構図が変わり、手前と奥の形が異なる速さで本文の脇を通ります。無料鑑定の結果には、その数字の色で波紋が一度広がります。
+スクロールすると、一枚の縦長の水彩画を上から下へたどります。スクロールを止めたあとも、絵の具の濃淡や細い縁が水の中のように揺れます。手前と奥の形は異なる速さで本文の脇を通ります。無料鑑定の結果には、その数字の色で波紋が一度広がります。
 
 画面左下のボタンで背景の動きを一時停止・再開できます。端末の「動きを減らす」設定にも対応しています。
 
