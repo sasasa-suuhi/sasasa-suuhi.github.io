@@ -3,187 +3,95 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#faf6f1">
+  <meta name="theme-color" content="#fcfaf8">
   <meta name="description" content="数秘術鑑定士・さささ。生年月日やお名前の数字を手がかりに、仕事、人間関係、これからのことを一緒に考えます。個別鑑定と15分の無料相談のご案内。">
-  <meta property="og:title" content="数秘術鑑定 さささ｜わたしは、どうしたい？">
+  <meta property="og:title" content="数秘術鑑定 さささ｜心の声に、色がつく。">
   <meta property="og:description" content="数秘と対話で、自分の気持ちをひも解く時間。個別鑑定と15分の無料相談のご案内。">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ja_JP">
   <link rel="canonical" href="https://sasasa-suuhi.github.io/">
   <meta property="og:url" content="https://sasasa-suuhi.github.io/">
-  <meta property="og:image" content="https://sasasa-suuhi.github.io/assets/hero-journal.webp">
+  <meta property="og:image" content="https://sasasa-suuhi.github.io/assets/ripple-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <title>数秘術鑑定 さささ｜わたしは、どうしたい？</title>
+  <title>数秘術鑑定 さささ｜心の声に、色がつく。</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="./assets/reading-wash.webp" as="image">
-  <link rel="stylesheet" href="./styles.css?v=paper-motion">
-  <link rel="stylesheet" href="./hero-motion.css?v=floating-digits">
-  <link rel="stylesheet" href="./story-motion.css">
+  <link rel="preload" href="./assets/ripple-paper.webp" as="image">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./ripple-motion.css">
   <script src="./numerology.js" defer></script>
-  <script src="./app.js?v=paper-motion" defer></script>
+  <script src="./app.js" defer></script>
 </head>
 <body>
+  <div class="water-scene" aria-hidden="true">
+    <div class="water-far"></div>
+    <div class="water-middle"></div>
+    <div class="water-near"></div>
+  </div>
   <div class="page-progress" aria-hidden="true"><span></span></div>
   <a class="skip-link" href="#main">本文へ進む</a>
-
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#top">数秘術鑑定 <span>さささ</span></a>
-      <nav class="desktop-nav" aria-label="鑑定のご案内">
-        <a href="#session">鑑定内容・料金</a>
-        <a href="#consultation">15分の無料相談</a>
+      <a class="brand" href="#top" aria-label="数秘術鑑定 さささ トップへ">
+        <img src="./assets/sasasa-signature.webp" alt="" class="signature">
+        <span>数秘術鑑定 さささ</span>
+      </a>
+      <nav class="desktop-nav" aria-label="メインメニュー">
+        <a href="#approach">私の想い</a>
+        <a href="#reading">無料ミニ鑑定</a>
+        <a href="#about">自己紹介</a>
+        <a href="#session">個別鑑定</a>
       </nav>
-      <div class="header-actions">
-        <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
-      </div>
+      <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="サイトメニュー" hidden>
-      <a href="#questions"><small aria-hidden="true">01</small>相談できること</a>
-      <a href="#session"><small aria-hidden="true">02</small>鑑定・料金</a>
-      <a href="#reading"><small aria-hidden="true">03</small>無料ミニ鑑定</a>
-      <a href="#about"><small aria-hidden="true">04</small>さささについて</a>
-      <a href="#consultation"><small aria-hidden="true">05</small>15分の無料相談</a>
+      <a href="#approach">私の想い</a><a href="#reading">無料ミニ鑑定</a><a href="#about">自己紹介</a>
+      <a href="#session">個別鑑定・料金</a><a href="#booking">お申し込み</a><a href="#consultation">15分の無料相談</a>
     </nav>
   </header>
-
   <main id="main">
-    <div class="reading-story" data-reading-story>
-      <div class="story-backdrop" aria-hidden="true"><div class="story-wash"></div></div>
-
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <svg class="hero-sheet" viewBox="0 0 1400 680" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="sheet-light" x1="12%" y1="0%" x2="88%" y2="95%">
-              <stop stop-color="#fffaf4" stop-opacity=".89"/>
-              <stop offset=".54" stop-color="#fffcf8" stop-opacity=".79"/>
-              <stop offset="1" stop-color="#fff9f4" stop-opacity=".49"/>
-            </linearGradient>
-          </defs>
-          <path d="M-8-8H526C648 61 774 117 939 174C1057 215 1082 317 1063 415L1044 534C929 561 817 606 686 686H-8Z" fill="url(#sheet-light)" stroke="#fffdf8" stroke-opacity=".88" stroke-width="1.7" vector-effect="non-scaling-stroke"/>
-        </svg>
-        <div class="hero-numbers" aria-hidden="true">
-          <span class="hero-digit"><span>1</span></span>
-          <span class="hero-digit"><span>2</span></span>
-          <span class="hero-digit"><span>3</span></span>
-          <span class="hero-digit"><span>4</span></span>
-          <span class="hero-digit"><span>5</span></span>
-          <span class="hero-digit"><span>6</span></span>
-          <span class="hero-digit"><span>7</span></span>
-          <span class="hero-digit"><span>8</span></span>
-          <span class="hero-digit"><span>9</span></span>
-        </div>
-        <div class="hero-inner container">
-          <div class="hero-copy">
-            <h1 id="hero-title"><span>わたしは、</span><span>どうしたい？</span></h1>
-            <p class="hero-description">生年月日とお名前から、自分を読み解く。</p>
-            <div class="hero-links">
-              <a class="button button-outline" href="#session">鑑定内容・料金 <span aria-hidden="true">→</span></a>
-              <a class="button" href="#consultation">15分の無料相談</a>
-            </div>
-          </div>
-          <a class="scroll-note" href="#example"><span aria-hidden="true">SCROLL</span><span class="visually-hidden">相談の一例へ</span></a>
-        </div>
-      </section>
-
-      <section class="story-example" id="example" aria-label="相談の一例">
-        <div class="story-stage">
-          <div class="story-photo" aria-hidden="true">
-            <img src="./assets/reading-pencil.webp" width="1400" height="876" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="story-example-inner container">
-            <figure class="story-quote">
-              <figcaption>相談の一例</figcaption>
-              <blockquote>「この仕事、<br>続ける？」</blockquote>
-            </figure>
-          </div>
-          <svg class="story-fold" viewBox="0 0 1400 760" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <defs>
-              <linearGradient id="fold-light" x1="5%" y1="100%" x2="94%" y2="5%">
-                <stop stop-color="#e9ccd5" stop-opacity=".44"/>
-                <stop offset=".45" stop-color="#fff9f0" stop-opacity=".88"/>
-                <stop offset="1" stop-color="#f7e5c8" stop-opacity=".62"/>
-              </linearGradient>
-            </defs>
-            <path d="M-5 654C244 535 439 424 634 279S1066 64 1410-15V262C1216 300 1018 375 829 482S423 688 85 767H-5Z" fill="url(#fold-light)" stroke="#fffdf8" stroke-opacity=".9" stroke-width="1.25" vector-effect="non-scaling-stroke"/>
-            <path d="M-5 721C297 640 446 542 698 386S1142 182 1410 126" stroke="#fffdf8" stroke-opacity=".68" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
-          </svg>
-          <div class="story-answer">
-            <svg class="answer-sheet" viewBox="0 0 1400 650" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="answer-light" x1="90%" y1="0%" x2="25%" y2="100%">
-                  <stop stop-color="#fffdf8" stop-opacity=".95"/>
-                  <stop offset="1" stop-color="#fffbf6" stop-opacity=".7"/>
-                </linearGradient>
-              </defs>
-              <path d="M-10 226C176 139 322 87 566 115C888 152 1103 121 1410 2V656H-10Z" fill="url(#answer-light)" stroke="#fffdf8" stroke-opacity=".92" stroke-width="1.7" vector-effect="non-scaling-stroke"/>
-              <path d="M200 654C209 500 371 234 552 141C604 116 662 118 738 131L1410 183V656Z" fill="#fffdf8" fill-opacity=".26" stroke="#fffdf8" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>
-            </svg>
-            <div class="story-answer-inner container">
-              <h2>何を大切にしたい？</h2>
-              <p>数字を手がかりに、迷いの奥にある気持ちを一緒に言葉にしていきます。</p>
-              <a class="text-link" href="#questions">鑑定でできること <span aria-hidden="true">→</span></a>
-              <div class="answer-numbers" aria-hidden="true"><span>3</span><span>5</span><span>7</span></div>
-            </div>
-          </div>
-          <div class="story-indicator" aria-hidden="true">
-            <span><b>01</b><span>手がかり</span></span>
-            <span><b>02</b><span>相談の一例</span></span>
-            <span><b>03</b><span>次の問い</span></span>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <section class="questions" id="questions" aria-labelledby="questions-title">
-      <div class="container">
-        <div class="questions-heading" data-reveal>
-          <p class="section-label"><span aria-hidden="true">01</span>相談できること</p>
-          <h2 id="questions-title">最近、どんなことが<br class="mobile-break">気になりますか？</h2>
-          <p class="section-intro">たとえば、こんな問いから。うまく話せるか心配なときも、そのままお聞かせください。</p>
-        </div>
-        <div class="question-grid" data-stagger>
-          <article class="question-card" data-reveal><p class="question-topic">01 / 仕事・強み</p><h3>この仕事を、続けていくのかな。</h3><p>自分の得意なことや、無理なく力を発揮できる働き方を考えたい。</p></article>
-          <article class="question-card" data-reveal><p class="question-topic">02 / 人間関係</p><h3>つい、誰かに合わせすぎてしまう。</h3><p>人との距離感や、自分の気持ちを後回しにする癖を見つめたい。</p></article>
-          <article class="question-card" data-reveal><p class="question-topic">03 / これから</p><h3>変えたい気持ちはあるけれど。</h3><p>何を大切にしたいか整理して、いまの自分にできる一歩を見つけたい。</p></article>
-        </div>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-numbers" aria-hidden="true">
+        <img src="./assets/digit-8.webp" alt="" class="hero-digit digit-8">
+        <img src="./assets/digit-9.webp" alt="" class="hero-digit digit-9">
+        <img src="./assets/digit-6.webp" alt="" class="hero-digit digit-6">
+        <img src="./assets/digit-2.webp" alt="" class="hero-digit digit-2">
       </div>
+      <div class="hero-copy">
+        <h1 id="hero-title"><span>心の声に、</span><span>色がつく。</span></h1>
+        <p class="hero-description">生まれた日の数字を、対話のはじまりに。</p>
+        <a class="brush-link" href="#reading">無料鑑定を試す <span aria-hidden="true">→</span></a>
+      </div>
+      <a class="scroll-cue" href="#approach" aria-label="私の想いを読む"><span></span></a>
     </section>
-
-    <section class="session container section-space" id="session" aria-labelledby="session-title">
-      <div class="session-heading" data-reveal>
-        <p class="section-label"><span aria-hidden="true">02</span>個別鑑定</p>
-        <h2 id="session-title">気になることを、<br>ひとつ持って。</h2>
-        <p class="section-intro">仕事のこと、人との距離、これからのこと。<br class="desktop-break">生年月日とお名前から読む数字を手がかりに、<br class="desktop-break">いま気になることを一緒にひも解きます。</p>
+    <section class="approach chapter container" id="approach" aria-labelledby="approach-title">
+      <div class="section-heading" data-stagger>
+        <p class="section-label" data-reveal>私の想い</p>
+        <h2 id="approach-title" data-reveal="line">うまく言葉にならない日にも。</h2>
+        <p class="section-intro" data-reveal>「なんとなく気になる」。その小さな感覚から、お話を始めましょう。<br>数字を手がかりに、一緒にあなたの言葉を探します。</p>
       </div>
-      <div class="session-panel" data-reveal data-scroll-panel>
-        <div class="session-price">
-          <p class="session-name">さささの数秘術鑑定</p>
-          <p class="price"><span><strong>45</strong>分</span><span><strong>3,000</strong>円</span></p>
-          <p class="session-includes">ご本人1名・鑑定書PDF付き</p>
+      <details class="fold" data-reveal>
+        <summary>鑑定で大切にしていること <span class="fold-mark" aria-hidden="true"></span></summary>
+        <div class="principles">
+          <article><h3>丁寧に伝える</h3><p>数字には、それぞれ意味や役割があります。ひとつずつ丁寧にお伝えし、あなたをより深く知る手がかりにします。</p></article>
+          <article><h3>数字で決めつけない</h3><p>同じ数字でも、その方の人柄や経験によって読み解き方は変わります。お話を聞きながら、あなたにとっての意味を一緒に考えます。</p></article>
+          <article><h3>自分に合う一歩を見つける</h3><p>本音や持ち味を知り、これからを一緒に考えます。</p></article>
         </div>
-        <div class="session-details">
-          <p><span class="detail-dot" aria-hidden="true"></span>オンラインまたは対面でお話しします</p>
-          <p><span class="detail-dot" aria-hidden="true"></span>オンラインは音声のみ・顔出し不要</p>
-          <p><span class="detail-dot" aria-hidden="true"></span>鑑定後に、結果をまとめた2ページのPDFをお届け</p>
-          <button class="text-link details-link" type="button" data-dialog="terms-dialog">ご利用案内を見る <span aria-hidden="true">↗</span></button>
-        </div>
-      </div>
-      <div class="session-actions" data-reveal>
-        <a class="button" href="#booking">個別鑑定のお申し込み <span class="button-arrow" aria-hidden="true">→</span></a>
-        <a class="text-link" href="#consultation">15分の無料相談について <span aria-hidden="true">→</span></a>
-      </div>
+      </details>
     </section>
-
-    <section class="reading-section section-surface" id="reading" aria-labelledby="reading-title">
+    <section class="reading-section chapter" id="reading" aria-labelledby="reading-title">
       <div class="reading-panel container">
-        <div class="reading-heading reveal"><p class="section-label"><span aria-hidden="true">03</span>無料ミニ鑑定</p><h2 id="reading-title">あなたのベースナンバーを<br>見てみましょう</h2><p class="section-intro">生年月日から、あなたの土台となる数字を。<br>自分を知る、はじめの一歩です。</p></div>
-        <div class="reading-experience reveal">
-          <div class="number-garden" data-scroll-art aria-hidden="true">
-            <svg viewBox="0 0 400 400" class="garden-thread"><path d="M207 35C292 2 392 100 362 215S253 384 147 359 15 198 52 115 181 49 228 85 249 183 193 201 126 133 186 118 281 195 244 251 147 256 122 209"/></svg>
-            <div class="garden-ring"></div><div class="garden-center"><span class="garden-label">YOUR BASE NUMBER</span><span id="visual-number" class="garden-number">?</span><span id="visual-caption" class="garden-caption">あなたの数字に、出会う。</span></div>
-            <div class="garden-digits"><span style="--i:0" data-number="1">1</span><span style="--i:1" data-number="2">2</span><span style="--i:2" data-number="3">3</span><span style="--i:3" data-number="4">4</span><span style="--i:4" data-number="5">5</span><span style="--i:5" data-number="6">6</span><span style="--i:6" data-number="7">7</span><span style="--i:7" data-number="8">8</span><span style="--i:8" data-number="9">9</span></div>
+        <div class="reading-experience">
+          <div class="number-garden" aria-hidden="true" data-reveal="picture">
+            <div class="garden-ring"></div>
+            <div class="garden-center">
+              <img class="garden-specimen" src="./assets/digit-6.webp" alt="" loading="lazy">
+              <span class="garden-number" id="visual-number"></span>
+              <span class="garden-caption" id="visual-caption"></span>
+            </div>
           </div>
-          <div class="reading-input">
+          <div class="reading-input" data-reveal>
+            <p class="section-label">無料ミニ鑑定</p>
+            <h2 id="reading-title"><span>あなたの</span><span>ベースナンバーを</span><br><span>見てみましょう</span></h2>
             <form id="birth-form" class="birth-form" novalidate>
               <fieldset disabled><legend>あなたの生年月日</legend>
                 <div class="date-inputs">
@@ -209,62 +117,54 @@
         <p class="reading-note reveal">数字は、自分と向き合うための手がかり。<br>あなたを決めつけるものではありません。</p>
       </div>
     </section>
-
-    <section class="approach container section-space" id="approach" aria-labelledby="approach-title">
-      <div class="approach-heading reveal"><p class="section-label"><span aria-hidden="true">04</span>私の想い</p><h2 id="approach-title">数秘術で、<br>私が大切に<br class="desktop-break">していること</h2><p class="approach-lead">数字を通して、<br>目の前のあなたを見つめる。</p><svg class="approach-thread" viewBox="0 0 180 130" aria-hidden="true"><path d="M2 104C49 143 148 93 125 43S29 46 65 77 172 119 177 3"/></svg></div>
-      <div class="principles">
-        <article class="reveal"><span class="principle-number" aria-hidden="true">01</span><div><h3>丁寧に伝える</h3><p>数字には、それぞれ意味や役割があります。ひとつずつ丁寧にお伝えし、あなたをより深く知る手がかりにします。</p></div></article>
-        <article class="reveal"><span class="principle-number" aria-hidden="true">02</span><div><h3>数字で決めつけない</h3><p>数字の意味だけで、あなたを決めつけません。同じ数字でも、その方の人柄や経験によって読み解き方は変わります。</p></div></article>
-        <article class="reveal"><span class="principle-number" aria-hidden="true">03</span><div><h3>自分に合う一歩を見つける</h3><p>本音や持ち味を知り、<br>これからを一緒に考えます。</p></div></article>
+    <section class="about chapter container" id="about" aria-labelledby="about-title">
+      <div class="about-copy" data-stagger>
+        <p class="section-label" data-reveal>自己紹介</p>
+        <h2 id="about-title" data-reveal="line">はじめまして、さささです。</h2>
+        <p class="section-intro" data-reveal>「口下手なあなたには、数秘術がいいかも」。<br>師匠のひと言が、数秘を学び始めたきっかけでした。</p>
+        <p data-reveal>鑑定では、数字が表す意味に、<br>お話を聞く中で感じた私自身の直感も添えています。<br>あなたのペースで聞かせてください。</p>
+        <a class="text-link" href="https://www.instagram.com/sasasa_suuhi/" target="_blank" rel="noopener noreferrer" data-reveal>Instagram <span>@sasasa_suuhi</span> <span aria-hidden="true">↗</span></a>
       </div>
+      <figure class="portrait-wrap" data-reveal="picture">
+        <div class="portrait"><img src="./assets/profile-approved.png" width="278" height="278" loading="lazy" decoding="async" alt="木漏れ日の中に立つ、白いブラウスを着たさささの後ろ姿。"></div>
+      </figure>
     </section>
-
-    <section class="about section-surface" id="about" aria-labelledby="about-title">
-      <div class="about-inner container">
-        <div class="portrait-wrap reveal"><div class="portrait" data-scroll-panel><img src="./assets/sasasa-portrait.webp" width="640" height="640" loading="lazy" alt="緑の広がる公園で、白いブラウスを着たさささの後ろ姿。"></div><p class="portrait-caption">さささ <span>数秘術鑑定</span></p><svg class="portrait-thread" viewBox="0 0 420 420" aria-hidden="true"><path d="M392 75C224-27 5 77 36 247S344 465 390 270 176 138 207 241 339 283 394 367"/></svg></div>
-        <div class="about-copy reveal"><p class="section-label"><span aria-hidden="true">05</span>自己紹介</p><h2 id="about-title">はじめまして、<br>さささです。</h2><p>師匠との出会いをきっかけに、<br>「口下手なあなたには、数秘術がいいかも」と<br class="desktop-break">勧められ、学び始めました。</p><p>個別鑑定では、数秘と対話に、<br class="desktop-break">私自身の直感も交えながらお伝えしています。</p><p>うまく言葉にならない気持ちも、一緒に少しずつ。<br class="desktop-break">あなたの本音や持ち味をひもとく時間を、<br class="desktop-break">大切にしています。</p><a class="instagram-link" href="https://www.instagram.com/sasasa_suuhi/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".75"/></svg><span>@sasasa_suuhi</span><span aria-hidden="true">↗</span><span class="visually-hidden">（別のタブで開きます）</span></a></div>
-      </div>
-    </section>
-
-    <section class="booking section-surface" id="booking" aria-labelledby="booking-title">
-      <div class="booking-inner container">
-        <div class="booking-heading" data-reveal>
-          <p class="section-label"><span aria-hidden="true">06</span>お申し込み・ご相談</p>
-          <h2 id="booking-title">ここから、あなたの話を。</h2>
-          <p class="booking-intro">鑑定をご希望の方も、まず質問してみたい方も。<br class="desktop-break">今の気持ちに合う入口をお選びください。</p>
+    <section class="session chapter" id="session" aria-labelledby="session-title">
+      <div class="container">
+        <div class="section-heading" data-stagger>
+          <p class="section-label" data-reveal>個別鑑定</p>
+          <h2 id="session-title" data-reveal="line">数字と対話で、あなたを知る時間。</h2>
+          <p class="section-intro" data-reveal>仕事のこと、人との距離、これからのこと。<br>生年月日とお名前から読む数字を手がかりに、<br class="mobile-break">いま気になることを一緒にひも解きます。</p>
         </div>
-        <div class="booking-grid" data-stagger>
-          <article class="booking-card booking-card-paid" aria-labelledby="booking-paid-title" data-reveal>
-            <p class="booking-kicker">45分・3,000円</p>
-            <h3 id="booking-paid-title">個別鑑定に申し込む</h3>
-            <p class="booking-card-copy">火・水・木曜日の夜に受け付けています。フォームで、ご希望の日付・曜日・時間帯をお知らせください。</p>
-            <div class="booking-hours">
-              <p>受付時間</p>
-              <p><span>19:00〜20:00</span><span>20:00〜21:00</span></p>
-              <small>1時間枠での受付です。鑑定は45分です。</small>
-            </div>
-            <a class="button booking-button" href="https://forms.gle/M8jbemc9rDprEHAz6" target="_blank" rel="noopener noreferrer">鑑定の申し込みフォームを開く <span class="button-arrow" aria-hidden="true">↗</span><span class="visually-hidden">（別のタブで開きます）</span></a>
-            <span class="external-note">Googleフォームへ移動します</span>
-            <p class="booking-note">フォーム送信後、2日以内にメールで日程調整のご連絡をします。予約確定とお支払いはその後です。</p>
-          </article>
-          <article class="booking-card booking-card-free" id="consultation" aria-labelledby="consultation-title" data-reveal>
-            <p class="booking-kicker">15分・無料</p>
-            <h3 id="consultation-title">まずは無料で相談する</h3>
-            <p class="booking-card-copy">「こんなことも相談できる？」など、鑑定を申し込む前に聞いておきたいことをお話しいただけます。無料相談を経ずに鑑定へお申し込みいただくこともできます。</p>
-            <p class="consultation-instructions">Instagramの <strong>@sasasa_suuhi</strong> へ、DMで「15分の無料相談希望」とお送りください。</p>
-            <a class="button button-outline booking-button" href="https://www.instagram.com/sasasa_suuhi/" target="_blank" rel="noopener noreferrer">Instagramで相談する <span class="button-arrow" aria-hidden="true">↗</span><span class="visually-hidden">（別のタブで開きます）</span></a>
-            <span class="external-note">プロフィールの「メッセージ」からDMを送れます</span>
-          </article>
+        <div class="booking" id="booking" data-reveal>
+          <p class="price"><span><strong>45</strong> 分</span><span><strong>3,000</strong> 円</span></p>
+          <p class="hours">火・水・木曜日　19時／20時開始</p>
+          <p class="includes">オンラインまたは対面／鑑定書PDF付き</p>
+          <a class="button booking-button" href="https://forms.gle/M8jbemc9rDprEHAz6" target="_blank" rel="noopener noreferrer">申し込みフォームへ <span aria-hidden="true">↗</span></a>
+          <p class="booking-note">Googleフォームでご希望の日時をお知らせください。<br>2日以内にメールで日程をご連絡します。</p>
+          <button class="text-link" type="button" data-dialog="terms-dialog">ご利用案内を見る <span aria-hidden="true">↗</span></button>
         </div>
+        <details class="fold examples" id="questions" data-reveal>
+          <summary>相談できること <span class="fold-mark" aria-hidden="true"></span></summary>
+          <div class="principles" id="example">
+            <article><h3>この仕事を、続けていくのかな。</h3><p>自分の得意なことや、無理なく力を発揮できる働き方を考えたいときに。</p></article>
+            <article><h3>つい、誰かに合わせすぎてしまう。</h3><p>人との距離感や、自分の気持ちを後回しにする癖を見つめたいときに。</p></article>
+            <article><h3>変えたい気持ちはあるけれど。</h3><p>何を大切にしたいか整理して、いまの自分にできる一歩を見つけたいときに。</p></article>
+          </div>
+        </details>
+        <aside class="consultation" id="consultation" data-reveal>
+          <h3>お申し込み前の無料相談 <small>15分</small></h3>
+          <p>「こんなことも相談できる？」など、事前に聞いておきたいことがあれば、<br>InstagramのDMで「15分の無料相談希望」とお送りください。</p>
+          <a class="text-link" href="https://www.instagram.com/sasasa_suuhi/" target="_blank" rel="noopener noreferrer">Instagramで相談する <span aria-hidden="true">↗</span></a>
+        </aside>
       </div>
     </section>
   </main>
-
-  <footer class="site-footer container"><div class="footer-signature"><a class="footer-brand" href="#top">さささ</a><p>数秘と対話で、あなたらしい一歩を。</p></div><div class="footer-social"><p>日々の言葉は、Instagramで。</p><a href="https://www.instagram.com/sasasa_suuhi/" target="_blank" rel="noopener noreferrer">@sasasa_suuhi <span aria-hidden="true">↗</span><span class="visually-hidden">（別のタブで開きます）</span></a></div><div class="footer-bottom"><span>© さささ｜数秘術</span><div><button type="button" data-dialog="privacy-dialog">プライバシー</button><button type="button" data-dialog="terms-dialog">ご利用案内</button><a href="#top">ページの上へ <span aria-hidden="true">↑</span></a></div></div></footer>
-  <nav class="mobile-dock" aria-label="すぐにアクセス">
-    <a class="button button-outline" href="#session">鑑定・料金</a>
-    <a class="button" href="#consultation" aria-label="15分の無料相談">無料相談 <span aria-hidden="true">↗</span></a>
-  </nav>
+  <footer class="site-footer container">
+    <a class="brand footer-brand" href="#top"><img src="./assets/sasasa-signature.webp" alt="" class="signature" loading="lazy"><span>数秘術鑑定 さささ</span></a>
+    <div><button type="button" data-dialog="privacy-dialog">プライバシー</button><button type="button" data-dialog="terms-dialog">ご利用案内</button><a href="https://www.instagram.com/sasasa_suuhi/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
+  </footer>
+  <nav class="mobile-dock" aria-label="お申し込みへのショートカット"><a href="#booking">お申し込み <span aria-hidden="true">↗</span></a></nav>
   <dialog id="privacy-dialog" aria-labelledby="privacy-title">
     <div class="dialog-content">
       <div class="dialog-heading"><h2 id="privacy-title">プライバシー</h2><button type="button" data-close aria-label="閉じる">×</button></div>
@@ -283,7 +183,7 @@
       <p>ご本人1名・45分・3,000円。ご本人の性質や、気になるテーマひとつを中心にお話しします。ご相談内容が決まっていなくても大丈夫です。</p>
       <p>オンライン鑑定は音声で、お互いに顔出しは不要です。対面鑑定の場所は、日程調整時にご案内します。</p>
       <h3>お申し込みと資料</h3>
-      <p>フォームは予約希望の受付です。火・水・木曜日の19:00〜20:00／20:00〜21:00から、ご希望の日付・曜日・時間帯をお知らせください。1時間枠での受付ですが、鑑定は45分です。送信だけでは予約確定やお支払いにはなりません。2日以内に、メールで日程調整のご連絡をします。</p>
+      <p>フォームは予約希望の受付です。火・水・木曜日の19:00〜20:00／20:00〜21:00から、ご希望の日付・曜日・時間帯をお知らせください。1時間枠での受付です。鑑定は45分です。送信だけでは予約確定やお支払いにはなりません。2日以内に、メールで日程調整のご連絡をします。</p>
       <p>鑑定結果と数字の説明をまとめた2ページのPDFを、鑑定後2日以内にメールでお送りします。納品後7日以内、鑑定内容についてのご質問に1往復まで対応します。</p>
       <h3>お支払い・変更について</h3>
       <p>オンラインは日程調整後の事前振込、対面は当日現金または事前振込です。振込手数料はお客様負担となります。会場費・飲食代など別途費用がある場合は、予約確定前にお伝えします。</p>

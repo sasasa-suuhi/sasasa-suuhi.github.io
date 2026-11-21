@@ -1,0 +1,187 @@
+/* A single sheet of paper behind the entire document. The painted perimeter
+   moves independently in three planes; the central reading area stays clear. */
+body {
+  isolation: isolate;
+}
+
+.water-scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+  background: #fffdfa;
+}
+
+.water-far, .water-middle, .water-near {
+  position: absolute;
+  pointer-events: none;
+}
+
+.water-far {
+  inset: -18px -12px;
+  background: #fffdfa url("./assets/ripple-paper.webp") center / 100% 100% no-repeat;
+}
+
+.water-middle, .water-near {
+  inset: -7% -6%;
+}
+
+.water-middle::before, .water-middle::after,
+.water-near::before, .water-near::after {
+  content: "";
+  position: absolute;
+  width: 48%;
+  height: 100%;
+  background: linear-gradient(146deg, var(--wash-a), var(--wash-b) 50%, var(--wash-c));
+  /* The transparent ends allow one brushstroke to dissolve into the next. */
+  mask-image: radial-gradient(ellipse var(--brush-oval) at var(--brush-origin),
+    transparent 76%, #0003 79%, #000a 85%, #000d 86.4%, #0004 87%, transparent 93%);
+  border-radius: 45%;
+}
+
+.water-middle::before {
+  --wash-a: #fae8b300;
+  --wash-b: #e1afcd88;
+  --wash-c: #b8a5d85c;
+  --brush-oval: 129% 59%;
+  --brush-origin: 112% 55%;
+  top: -15%;
+  left: -14%;
+  rotate: 13deg;
+}
+
+.water-middle::after {
+  --wash-a: #e6c5e800;
+  --wash-b: #b9cfeb7a;
+  --wash-c: #c9debf26;
+  --brush-oval: 152% 70%;
+  --brush-origin: -20% 53%;
+  bottom: -10%;
+  right: -17%;
+  rotate: 17deg;
+}
+
+.water-near::before {
+  --wash-a: #f5bfc500;
+  --wash-b: #edb1bb88;
+  --wash-c: #edcba926;
+  --brush-oval: 125% 63%;
+  --brush-origin: 113% 51%;
+  width: 36%;
+  height: 81%;
+  top: 24%;
+  left: -8%;
+  rotate: -20deg;
+}
+
+.water-near::after {
+  --wash-a: #a5d6ee00;
+  --wash-b: #84c7c794;
+  --wash-c: #c4abd93d;
+  --brush-oval: 123% 74%;
+  --brush-origin: -20% 44%;
+  width: 39%;
+  height: 88%;
+  top: -9%;
+  right: -10%;
+  rotate: -13deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy > h1,
+  .hero-copy > p,
+  .hero-copy > .brush-link {
+    animation: water-letter-arrive 880ms cubic-bezier(.2,.8,.2,1) backwards;
+  }
+
+  .hero-copy > p { animation-delay: 110ms; }
+  .hero-copy > .brush-link { animation-delay: 205ms; }
+
+  .hero-numbers .hero-digit {
+    animation: pigment-arrive 1.25s cubic-bezier(.25,.75,.24,1) backwards;
+    translate: 0 calc(var(--digit-travel, 0px) * var(--depth, .2));
+  }
+
+  .hero-numbers .digit-2 { --depth: -.52; animation-delay: .13s; }
+  .hero-numbers .digit-6 { --depth: -.85; animation-delay: .07s; }
+  .hero-numbers .digit-8 { --depth: .22; animation-delay: .20s; }
+  .hero-numbers .digit-9 { --depth: .4; animation-delay: .24s; }
+
+  :is(.reveal, [data-reveal]).is-waiting {
+    opacity: 0;
+    translate: 0 22px;
+  }
+
+  :is(.reveal, [data-reveal]).is-visible {
+    opacity: 1;
+    translate: 0 0;
+    transition: opacity .83s ease var(--reveal-delay, 0ms),
+      translate 1.05s cubic-bezier(.16,.85,.2,1) var(--reveal-delay, 0ms);
+  }
+
+  :is(.reveal, [data-reveal]).is-waiting:focus-within {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  [data-reveal="line"].is-waiting { clip-path: inset(0 0 68% 0); }
+  [data-reveal="line"].is-visible {
+    clip-path: inset(-.15em);
+    transition: opacity .8s ease var(--reveal-delay, 0ms),
+      translate 1.05s cubic-bezier(.16,.85,.2,1) var(--reveal-delay, 0ms),
+      clip-path .9s cubic-bezier(.22,.76,.25,1) var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal="picture"].is-waiting img { scale: .97; }
+  [data-reveal="picture"].is-visible img {
+    scale: 1;
+    transition: scale 1.25s cubic-bezier(.18,.76,.3,1);
+  }
+
+  .result-identity { position: relative; isolation: isolate; overflow: hidden; }
+  .result-wrap.is-new .result-identity::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 49% 53% 47% 52%;
+    border: 1px solid var(--number-line, #e4cedd);
+    box-shadow: 0 0 0 12px var(--number-tint, #f5eaf0);
+    animation: reading-ripple 1.25s cubic-bezier(.12,.7,.22,1) both;
+  }
+
+  @keyframes water-letter-arrive {
+    from { opacity: 0; translate: 0 .36em; }
+    to { opacity: 1; translate: 0 0; }
+  }
+
+  @keyframes pigment-arrive {
+    from { opacity: 0; scale: .94; }
+    to { scale: 1; }
+  }
+
+  @keyframes reading-ripple {
+    from { opacity: .15; transform: translate(-50%, -50%) scale(.27); }
+    28% { opacity: .57; }
+    to { opacity: 0; transform: translate(-50%, -50%) scale(1.65); }
+  }
+}
+
+@media (max-width: 680px) {
+  .water-middle { opacity: .78; }
+  .water-near { opacity: .76; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .water-scene > div, .hero-numbers .hero-digit { transform: none; }
+}
+
+@media print {
+  .water-scene { display: none; }
+  :is(.reveal, [data-reveal]).is-waiting { opacity: 1; translate: none; }
+}

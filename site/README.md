@@ -21,9 +21,9 @@ GitHubの設定は`Settings` → `Pages` → `Source: GitHub Actions`です。�
 - 文章、プロフィール、料金、リンク：`index.html`
 - 色、余白、丸み、文字サイズ：`styles.css`
 - 数字ごとの説明文：`numerology.js` の `meanings`
-- トップの数字と相談例は `index.html` の `.reading-story`。水彩と手元の画像は `assets/reading-wash.webp` と `assets/reading-pencil.webp`
-- トップの登場は `hero-motion.css`、相談例の紙と写真は `story-motion.css`、スクロール位置に応じた進行は `app.js`
-- 自己紹介写真：`assets/sasasa-portrait.webp`
+- トップの水彩数字は `assets/digit-*.webp`。各数字のサイズと位置は `styles.css` で調整します。
+- 背景画は `assets/ripple-paper.webp`。波紋のレイヤーと登場時の演出は `ripple-motion.css`、スクロールに応じた移動は `app.js` にあります。
+- 自己紹介の丸写真は `assets/profile-approved.png`、名刺の署名は `assets/sasasa-signature.webp` です。
 
 自己紹介写真のファイル名を変える場合は、`index.html`の参照も変更してください。ページの背景色とグラデーションは`styles.css`で調整できます。
 
@@ -52,7 +52,7 @@ GitHubの設定は`Settings` → `Pages` → `Source: GitHub Actions`です。�
 
 ## 表示と文字
 
-トップでは半透明の紙が開き、名刺の色に合わせた1〜9が画面のあちこちに浮かびます。それぞれ異なる速さで揺れ、スクロールに合わせて別の方向や角度へ動きます。縦に進むと背景の水彩が移動し、短い区間で画面に留まる紙の上に、手元の写真、相談の一例、次の問いが順に現れます。料金の紙面、プロフィール写真、無料ミニ鑑定の図も表示位置に合わせて動きます。スクロールにはブラウザ標準の動作を使っています。
+水彩の背景と両端の波紋は、トップからフッターまで同じ背景に重なります。スクロールに合わせて各層が異なる距離を動き、見出し、本文、プロフィール写真が順に現れます。無料鑑定の結果には、その数字の色で波紋が一度広がります。
 
 画面幅に合わせた表示、スマートフォンの下部ボタン、メニュー、キーボード操作に対応しています。端末で動きを減らす設定をしている場合は、登場・スクロールの演出を止め、内容を静止した状態で表示します。
 
