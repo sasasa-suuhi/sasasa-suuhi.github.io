@@ -90,6 +90,10 @@
   .number-plane [data-slot="5"] { --x: 16%; --y: calc(100% - 48px); --size: clamp(68px, 17vw, 87px); }
 }
 
+@media (max-width: 360px) {
+  .number-plane [data-slot="6"] { --x: 14%; --size: 72px; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .space-number.in-view {
     animation: numeral-float var(--period, 9s) ease-in-out var(--phase, 0s) infinite alternate;
