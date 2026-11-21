@@ -18,7 +18,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let painting = null;
   let progress = 0, lastCrop = -1, scrollRange = 1;
-  let pixelRatio = 1, pad = 0, sourceScale = 1, travel = 0, wavelength = 1;
+  let pixelRatio = 1, pad = 0, amplitude = 0, sourceScale = 1, travel = 0, wavelength = 1;
   let clock = 0, lastPaint = null, frame = 0, dirtyLayout = true;
 
   function loadPainting() {
@@ -38,7 +38,8 @@
     wavelength = Math.max(450, Math.min(1050, w)) * pixelRatio;
     const width = Math.round(w * pixelRatio);
     const height = Math.round(h * pixelRatio);
-    const gutter = Math.ceil((Math.min(15, w * .019) + 3) * pixelRatio);
+    amplitude = (Math.min(15, w * .019) + 1) * pixelRatio * 1.32;
+    const gutter = Math.ceil(amplitude + 2 * pixelRatio);
     if (canvas.width !== width || canvas.height !== height || gutter !== pad) {
       canvas.width = width;
       canvas.height = height;
@@ -67,7 +68,6 @@
   function refract() {
     const w = crop.width, h = crop.height;
     const step = Math.max(6, Math.round(9 * pixelRatio));
-    const amplitude = pad - 2 * pixelRatio;
     const worldY = (progress * travel * sourceScale) / wavelength;
     const t = clock;
     function driftX(y) {

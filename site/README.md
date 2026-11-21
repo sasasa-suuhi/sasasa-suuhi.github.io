@@ -21,7 +21,7 @@ GitHubの設定は`Settings` → `Pages` → `Source: GitHub Actions`です。�
 - 文章、プロフィール、料金、リンク：`index.html`
 - 色、余白、丸み、文字サイズ：`styles.css`
 - 数字ごとの説明文：`numerology.js` の `meanings`
-- トップの水彩数字は `assets/digit-*.webp`。各数字のサイズと位置は `styles.css` で調整します。
+- 水彩の数字は `assets/digit-1.webp` から `assets/digit-9.webp` です。表示のたびに、ページに用意した9か所に1〜9を一つずつ割り当てます。各章の配置場所は `index.html`、余白とサイズは `number-depth.css`、数字の割り当てと奥行きの動きは `number-depth.js` で調整します。
 - 縦につながる水彩画は `assets/water-scroll.webp`、スマホ縦画面用は `assets/water-scroll-mobile.webp` です。水の揺らぎは `water-field.js`、静止画の表示は `water-field.css` で調整します。手前と奥を流れる形は `depth-shapes.js` と `depth-shapes.css`、見出しや写真の登場は `ripple-motion.css` にあります。
 - 自己紹介の丸写真は `assets/profile-approved.png`、名刺の署名は `assets/sasasa-signature.webp` です。
 

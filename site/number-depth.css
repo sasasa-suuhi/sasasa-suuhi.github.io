@@ -1,0 +1,104 @@
+/* Each chapter anchors its own numerals to the document. The full-width
+   plane allows the ink to sit in the margins of narrower content sections. */
+.number-plane {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.space-number {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  height: var(--size);
+  width: auto;
+  max-width: none;
+  opacity: var(--ink-opacity, .83);
+  transform: translate(-50%, -50%) rotate(var(--tilt));
+  transform-origin: 52% 53%;
+  filter: blur(var(--softness, 0px));
+  pointer-events: none;
+}
+
+.number-plane [data-slot="8"] {
+  --x: 33%; --y: 18%; --size: clamp(77px, 9vw, 138px);
+  --tilt: -4deg; --softness: .48px; --ink-opacity: .78;
+}
+.number-plane [data-slot="2"] {
+  --x: 88%; --y: 44%; --size: clamp(115px, 13vw, 200px);
+  --tilt: 3deg;
+}
+.number-plane [data-slot="6"] {
+  --x: 13%; --y: 75%; --size: clamp(121px, 14vw, 214px);
+  --tilt: -2deg; --ink-opacity: .88;
+}
+.number-plane [data-slot="4"] {
+  --x: 88%; --y: 66%; --size: clamp(87px, 9.5vw, 148px);
+  --tilt: 7deg; --softness: .3px;
+}
+.number-plane [data-slot="7"] {
+  --x: 9%; --y: 29%; --size: clamp(78px, 7.7vw, 124px);
+  --tilt: -6deg; --softness: .45px;
+}
+.number-plane [data-slot="3"] {
+  --x: 88%; --y: 79%; --size: clamp(100px, 10.4vw, 161px);
+  --tilt: 2deg; --ink-opacity: .88;
+}
+.number-plane [data-slot="9"] {
+  --x: 8%; --y: 45%; --size: clamp(95px, 10.3vw, 159px);
+  --tilt: -7deg; --softness: .22px;
+}
+.number-plane [data-slot="1"] {
+  --x: 85%; --y: 27%; --size: clamp(80px, 8.8vw, 139px);
+  --tilt: 5deg; --softness: .18px; --ink-opacity: .92;
+}
+.number-plane [data-slot="5"] {
+  --x: 17%; --y: 79%; --size: clamp(106px, 11.5vw, 172px);
+  --tilt: -3deg; --ink-opacity: .92;
+}
+
+/* Near digits sit in front of the card edge, below the interactive copy.
+   Distant digits pass under the paper where their paths intersect it. */
+.space-number { z-index: 0; }
+.space-number:is([data-slot="8"], [data-slot="7"], [data-slot="1"]) { z-index: -1; }
+.reading-panel, .about-copy, .session > .container { position: relative; z-index: 1; }
+
+@media (max-width: 1024px) {
+  .number-plane [data-slot="4"] { --x: 93%; }
+  .number-plane [data-slot="7"] { --x: 6.4%; }
+  .number-plane [data-slot="3"] { --x: 90%; --y: calc(100% - 27px); }
+  .number-plane [data-slot="5"] { --x: 12%; --y: calc(100% - 40px); }
+}
+@media (min-width: 621px) and (max-width: 1150px) {
+  .number-plane [data-slot="2"] { --x: 90%; --y: 31%; }
+  .number-plane [data-slot="9"] { --x: 85%; --y: 10%; --size: clamp(77px, 8.7vw, 99px); }
+  .number-plane [data-slot="1"] { --x: 93%; --y: 24%; }
+}
+@media (max-width: 620px) {
+  .number-plane [data-slot="8"] { --x: 28%; --y: 26%; --size: clamp(60px, 13vw, 80px); }
+  .number-plane [data-slot="2"] { --x: 82%; --y: 21%; --size: clamp(80px, 19.5vw, 111px); }
+  .number-plane [data-slot="6"] { --x: 15%; --y: 78%; --size: clamp(89px, 22vw, 129px); }
+  .number-plane [data-slot="4"] { --x: 83%; --y: 7%; --size: clamp(58px, 15vw, 82px); }
+  .number-plane [data-slot="7"] { --x: 13%; --y: 139px; --size: clamp(57px, 13.5vw, 78px); }
+  .number-plane [data-slot="3"] { --x: 88%; --y: calc(100% - 9px); --size: clamp(63px, 15.5vw, 83px); }
+  .number-plane [data-slot="9"] { --x: 13%; --y: 147px; --size: clamp(66px, 17vw, 90px); }
+  .number-plane [data-slot="1"] { --x: 88%; --y: 33px; --size: clamp(57px, 14vw, 74px); }
+  .number-plane [data-slot="5"] { --x: 16%; --y: calc(100% - 48px); --size: clamp(68px, 17vw, 87px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .space-number.in-view {
+    animation: numeral-float var(--period, 9s) ease-in-out var(--phase, 0s) infinite alternate;
+    will-change: transform;
+  }
+  @keyframes numeral-float {
+    from { translate: 0 0; rotate: -.7deg; }
+    to { translate: var(--drift-x, 3px) var(--drift-y, -5px); rotate: 1deg; }
+  }
+  .motion-paused .space-number, .numbers-asleep .space-number { animation-play-state: paused; }
+}
+@media print { .number-plane { display: none; } }

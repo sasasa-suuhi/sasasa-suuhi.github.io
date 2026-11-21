@@ -102,7 +102,6 @@
   const header = document.querySelector('.site-header');
   const progress = document.querySelector('.page-progress span');
   const dock = document.querySelector('.mobile-dock');
-  const hero = document.getElementById('top');
   const motionButton = document.querySelector('.motion-toggle');
   const root = document.documentElement;
   function syncMotionControl() {
@@ -148,9 +147,6 @@
       nextLink?.setAttribute('aria-current', 'location');
       currentLink = nextLink;
     }
-    if (scrollY <= viewport * 1.6 && !reducedMotion.matches && !root.classList.contains('motion-paused')) {
-      hero.style.setProperty('--digit-travel', Math.min(scrollY, viewport) * .12 + 'px');
-    }
   }
 
   function scheduleScrollState() {
@@ -160,8 +156,7 @@
   window.addEventListener('resize', scheduleScrollState, { passive: true });
   window.addEventListener('pageshow', scheduleScrollState);
   document.addEventListener('toggle', scheduleScrollState, true);
-  reducedMotion.addEventListener('change', event => {
-    if (event.matches) hero.style.removeProperty('--digit-travel');
+  reducedMotion.addEventListener('change', () => {
     syncMotionControl();
     scheduleScrollState();
   });

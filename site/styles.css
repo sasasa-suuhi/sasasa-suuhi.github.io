@@ -161,14 +161,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   background: linear-gradient(90deg,transparent,#f5bcaf 14%,#f8cec2 68%,transparent);
   transform: rotate(-1.8deg);
 }
-.hero-numbers { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
-.hero-digit { position: absolute; height: auto; object-fit: contain; opacity: .72; }
-.digit-2,.digit-6 { height: clamp(112px, 14vw, 214px); width: auto; }
-.digit-8,.digit-9 { height: clamp(74px, 9.2vw, 140px); width: auto; }
-.digit-6 { left: 8%; bottom: 16%; }
-.digit-2 { right: 6.5%; top: 35%; }
-.digit-8 { left: 32%; top: 18%; }
-.digit-9 { right: 24%; top: 15%; }
 .scroll-cue {
   position: absolute; left: calc(50% - 22px); bottom: 14px;
   width: 44px; height: 55px; display: grid; place-items: center;
@@ -226,8 +218,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .garden-ring::before { inset: 6%; transform: rotate(19deg); }
 .garden-ring::after { inset: 13%; transform: rotate(-13deg); }
 .garden-center { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.garden-specimen { width: auto; height: 46%; opacity: .79; }
-.has-result .garden-specimen,.number-garden:not(.has-result) .garden-number,
+.number-garden:not(.has-result) .garden-center::before {
+  content: ''; width: 36%; aspect-ratio: 1; border-radius: 51% 49% 54% 46%;
+  background: radial-gradient(ellipse at 38% 35%, #fffaf7 10%, #e7dcea75 62%, transparent 75%);
+  border: 1px solid #dac4d657;
+}
+.number-garden:not(.has-result) .garden-number,
 .number-garden:not(.has-result) .garden-caption { display: none; }
 .garden-number,.result-number { font: italic 400 clamp(82px,9vw,140px)/1 var(--numeral); color: var(--number-tone); }
 .garden-caption { font-size: 13px; color: var(--muted); margin-top: 12px; }
@@ -347,12 +343,6 @@ dialog::backdrop { background: #41353d69; backdrop-filter: blur(3px); }
   .hero-copy h1 { font-size: clamp(32px,8.35vw,47px); letter-spacing: .02em; }
   .hero-copy .hero-description { font-size: clamp(14px,3.8vw,19px); letter-spacing: .025em; margin-top: 18px; }
   .brush-link { font-size: 16px; margin-top: 32px; }
-  .digit-2,.digit-6 { height: clamp(87px,23vw,127px); }
-  .digit-8,.digit-9 { height: clamp(57px,15vw,84px); }
-  .digit-8 { top: 21%; left: 23%; }
-  .digit-9 { top: 17%; right: 18%; }
-  .digit-2 { top: auto; right: 5%; bottom: 22%; }
-  .digit-6 { left: 7%; bottom: 14%; }
   .mobile-dock { bottom: max(14px,env(safe-area-inset-bottom)); right: 14px; }
   .mobile-dock a { min-height: 44px; font-size: 13px; padding: 8px 17px; gap: 12px; }
   .scroll-cue { bottom: 9px; }
@@ -389,7 +379,7 @@ dialog::backdrop { background: #41353d69; backdrop-filter: blur(3px); }
   *,*::before,*::after { animation: none !important; transition: none !important; }
 }
 @media print {
-  .site-header,.mobile-dock,.motion-toggle,.hero-numbers,.scroll-cue,.water-scene,.page-progress { display: none; }
+  .site-header,.mobile-dock,.motion-toggle,.number-plane,.scroll-cue,.water-scene,.page-progress { display: none; }
   .hero { min-height: auto; padding: 30px 0; }
   .chapter { padding-block: 22px; }
   body { background: white; }
